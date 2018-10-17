@@ -94,11 +94,7 @@ function draw() {
 				if(keyIsDown(78)){
 					textSize(40);
 					textAlign(CENTER);
-<<<<<<< HEAD
 					text('THIS IS CRÃN', 625, 200); 
-=======
-					text('THIS IS CRÃN', 625, 200);
->>>>>>> e76ef81a67d8958000b238d5b7f1d27ae590c0a7
 				}
 			}
 		}
