@@ -6,7 +6,7 @@ Arquivos : game.js & index.html
 
 3º e 4º etapas - Em andamento
 
-5º e 6º etapas - Em andamento
+5º e 6º etapas - OK
 
 7º e 8º etapas - Em andamento
 
