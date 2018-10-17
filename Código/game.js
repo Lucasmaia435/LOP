@@ -94,7 +94,7 @@ function draw() {
 				if(keyIsDown(78)){
 					textSize(40);
 					textAlign(CENTER);
-					text('THIS IS CRÃN', 625, 200); // First Easter Egg
+					text('THIS IS CRÃN', 625, 200);
 				}
 			}
 		}
