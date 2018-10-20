@@ -1,0 +1,43 @@
+1 - Nome do jogo : Submarine Eco-Mission
+
+2 - Cinco niveis
+		1º 3 peixes na tela e 5 poluentes a cada 3 segundos
+		2º 5 pexes na tela e 10 poluentes a cada 5 segundos
+		3º 7 peixes na tela e 15 poluentes a cada 7 segundos
+		4º 9 peixes na tela e 20 poluentes a cada 9 segundos
+		5º 11 peixes e 3 carangueijos e 25 poluentes a cada 11 segundos
+
+3 - Personagem : 
+	Mergulhador
+		Cabeça: bolha de vidro
+		Dorso: roupa de marinheiro ou uma roupa que remeta o fundo do mar
+		Pernas: calça azul escura ou uma bermuda
+		Pés: botas de ferro ou sandálias 
+
+4 - Ambiente:
+		Ondas constantes
+		Algas se mexendo com altura variando de 200 até 350 pixels
+		Areia com pedras e corais
+		Céu azul com nuvens em movimento
+
+5 - Buff:
+	 	- A cada x pontos de salvação o personagem ganha uma arma capaz de desintegrar poluentes que dura 10 segundos e dobra os pontos alcançados
+
+6 - Descrições:
+		- Ao pegar/desintegrar 20(vinte) poluentes falar algo contra a prevenção de poluentes maritimos
+		- Ao ser pego por peixes falar algo sobre como peixes podem confundir alimentos
+
+
+7 - Game Over : 
+		1º Ser atingido por um peixe 3 vezes
+		2º Ser pego por um carangueijo 2 vezes
+		3º Deixar 5 peixes comerem poluentes 
+		4º Acertar 3 peixes com a arma(Buff)
+		5º Deixar 3 poluentes chegarem ao fundo
+
+
+Programa :
+
+Incluir mais de 1 peixe :
+	Usar um "for" para a produção de mais de um peixe
+		Usar outros n "for's" para carregar o frame do peixe randomicamente escolhido

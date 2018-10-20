@@ -1,27 +1,22 @@
 var a,b,x,y,r,t,life,s;
-a = 400, b = 300, x = 300, y = 300 , life = 3, s = 5, pont = 0
+a = 0, x = 300, y = 300 ,health = 3, s = 3.25, pont = 0, pointed = 0, pause == false;
 function setup(){
-	canvas = createCanvas(1280,480);
-	r = random(130,1160) , t = random(20,460);	
+	canvas = createCanvas(600,600);
+	canvas.position(300,0);
+	r = random(0,580) , t = 58 ,b = random(480,80)	;
 }
 function draw() {
-    background('gray');
-	fill('red');
-	rect(a,b,50,50);
+    background('#A896FF');
+	fill('orange');
+	rect(a,b,25,25);
 	fill('blue');
 	rect(x,y,50,50);
 	fill('white');
 	rect(r,t,10,10);
-	fill('brown');
-	rect(0,0,120,480);
-	fill('brown');
-	rect(1160,0,120,480);
-	fill('brown');
-	rect(0,0,1280,20);
-	fill('brown');
-	rect(0,460,1280,20);
+	fill('#C1B47C');
+	rect(0,560,600,40);
 	noStroke();
-	if(life > 0){
+	if(health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
 			x += s
 		}
@@ -33,56 +28,75 @@ function draw() {
 		}
 		if(keyIsDown(DOWN_ARROW)){ //Movimento para baixo de 5px
 			y += s
-		}//Movimentação
+		}
+		t++ // Queda do poluente
+		a++ // Movimento do peixe
+		if(a > 600){
+			a = 0
+			b = random(480,80)
+		}
 	}
-	if(x <= 120){
+	if(x <= -5){
 		x += s
 	}
-	if(x + 50>= 1160){
+	if(x >= 555){
 		x -= s
 	}
-	if(y + 50 >= 460){
+	if(y >= 515){
 		y -= s 
 	}
-	if(y <= 20){
+	if(y <= 60){
 		y += s
 	}
-	hit = collideRectRect(a,b,50,50,x,y,50,50)//Verificação de colisão entre o personagem e o objeto
-	if (hit == true){
-		life--
+	if(t == 570){
+		r = random(0,580)
+		t = -10
+		health--
+	}
+	if(keyIsDown(80)){
+		pause*= -1
+	}
+	PcF = collideRectRect(a,b,25,25,x,y,50,50)//Verificação de colisão entre o personagem e o peixe
+	if (PcF == true){
+		health--
 		console.log("hit")
-		x = 300  
-		y = 300
-		r = random(140,1130)
-		t = random(40,440)
+		r = random(0,580)
+		t = 0
+		x = random(x-50,x+50)
+		y += 55
 	}
-	hit2 = collideRectRect(x,y,50,50,r,t,10,10)//Verificando a colisão entre o personagem e os pontos
-	if(hit2 == true){
-		pont += 25
-		s += 1.25
+	PcP = collideRectRect(x,y,50,50,r,t,10,10)//Verificando a colisão entre o personagem e os poluentes
+	if(PcP == true){
+		pont += 10
+		pointed++
 		console.log("Pointed")
-		console.log(s)
-		r = random(140,1130)
-		t = random(40,440)
+		r = random(0,580)
+		t = -10
 	}
-	/*if(pont%500 == 0){
-		life++
-	}*/
+	FcP = collideRectRect(a,b,25,25,r,t,10,10)//Verificando a colisão entre o peixe e os poluentes
+	if(FcP == true){	
+		health--
+		r = random(0,580)
+		t = -10
+	}
+	if(pointed == 15 ){ //Dando pontos de saúde marinha a cada 100 pontos
+		health ++
+		pointed = 0
+	}
 	fill('black');
 	textSize(16);
 	textAlign(RIGHT);
-	text("Points: " + pont, 1220, 175);
+	text("Points: " + pont, 500, 20);
 	fill('black')
 	textSize(16);
 	textAlign(RIGHT);
-	text("life: " + life, 1220, 150); // Contador de vida
-	if(life == 0){ //Game over
-		textSize(40);
+	text("Ocean health: " + health, 140, 20); // Contador de vida
+	if(health <= 0){ //Game over
+		textSize(30);
 		textAlign(CENTER);
-		text('PRESS SPACEBAR TO PLAY AGAIN', 625, 200); 
+		text(' PRESS SPACEBAR \n TO \nPLAY AGAIN', 300, 300); 
 		if(keyIsDown(32)){
-			life = 3
-			s = 5
+			health = 3
 			pont = 0 
 			r = random(140,1130)
 			t = random(40,440)//Play Again
