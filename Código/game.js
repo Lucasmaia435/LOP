@@ -102,15 +102,4 @@ function draw() {
 			t = random(40,440)//Play Again
 			}
 	}
-	if(keyIsDown(67)){
-		if(keyIsDown(82)){
-			if(keyIsDown(65)){
-				if(keyIsDown(78)){
-					textSize(40);
-					textAlign(CENTER);
-					text('THIS IS CRÃN', 625, 200); 
-				}
-			}
-		}
-	}// First Easter Egg
 }
