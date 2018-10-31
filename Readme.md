@@ -6,7 +6,7 @@ Projeto em andamento na pasta : "Código"
 
 1º e 2º etapas - OK (No projeto)
 
-3º e 4º etapas - Em andamento
+3º e 4º etapas - OK  
 
 5º e 6º etapas - OK (No projeto)
 
