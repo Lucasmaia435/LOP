@@ -11,7 +11,9 @@ var pointed = 0 // Contador para aumento de pontos de saúde
 function setup(){
 	canvas = createCanvas(600,600);
 	canvas.position(300,0);
-	ObjPx = random(0,580) , ObjPy = 58 ,FishPy = random(480,80)	;
+	ObjPx = random(0,580);  
+	ObjPy = 58; 
+	FishPy = random(480,80)	;
 }
 function draw() {
     background('#A896FF');
@@ -23,7 +25,7 @@ function draw() {
 	rect(ObjPx,ObjPy,10,10);
 	fill('#C1B47C');
 	rect(0,560,600,40);
-	noStroke();
+	//noStroke();
 	if(health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
 			CharPx += CharS
