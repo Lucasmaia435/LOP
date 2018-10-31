@@ -13,7 +13,8 @@ function setup(){
 	canvas.position(300,0);
 	ObjPx = random(0,580);  
 	ObjPy = 58; 
-	FishPy = random(480,80)	;
+	FishPy = random(480,80);
+	frameRate(60);
 }
 function draw() {
     background('#A896FF');

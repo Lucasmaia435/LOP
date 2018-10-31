@@ -3,11 +3,22 @@ y = 255 // Posição inicial no eixo Y do personagem
 s = 5 // Valor da velocidade inicial 
 a = 0 // Posição inicial no eixo X do objeto
 b = 300 // Posição inicial no eixo Y do objeto
+var dx = x// Posição de saída do disparo
+var dy = y// Posição de saída do disparo 
+disparo = false // Váriavel que diz se há ou não disparo
 
 function setup(){
 	canvas = createCanvas(600,600) // Canvas com dimensões 600x600
 }
-
+	//Etapa 4
+function keyPressed(){
+	if(key === 'z' && disparo === false){ // Botão para realizar ação de atirar
+		console.log("pressed Z")
+		disparo = true
+		dx = x
+		dy = y
+	}
+}
 function draw(){
 	background('gray'); // Cor do background
 	
@@ -36,5 +47,13 @@ function draw(){
 			a = 0
 			b = random(600,0) // O objeto volta em uma posição aleátoria de Y entre 0 e 600
 		}
+	//Etapa 4
+	if(disparo === true){
+		fill("white")
+		rect(dx,dy, 10, 10)
+		dx += s*2
+		if(dx > 600){
+		disparo = false
+		}
+	}
 }
-
