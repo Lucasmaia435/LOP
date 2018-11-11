@@ -104,12 +104,16 @@ function draw() {
 	if(health <= 0){ //Game over
 		textSize(30);
 		textAlign(CENTER);
-		text(' PRESS SPACEBAR \n TO \nPLAY AGAIN', 300, 300); 
+		text(' PRESS SPACEBAR \n TO \nPLAY AGAIN', 300, 300);
+		CharPy = -300
+		CharPx = -300 
 		if(keyIsDown(32)){
 			health = 3
 			pont = 0 
 			ObjPx = random(0,580)
 			ObjPy = -10//Play Again
+			CharPx = 300
+			CharPy = 300
 			}
 	}
 }
