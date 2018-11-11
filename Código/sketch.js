@@ -1,100 +1,98 @@
-var a,b,x,y,r,t,life,s,i,colors;
-a = -25, x = 300, y = 300 ,health = 3, s = 3.25, pont = 0, pointed = 0, color = [];
-function preload(){
-	sound = loadSound("Sounds/sound1.mp3")
-	thebest = loadSound("Sounds/thebest.ogg")
-}
-
+var CharPx = 300 // Posição inicial do Jogador
+var CharPy = 300 // Posição inicial do Jogador 
+var ObjPx = 0 // Posição inicial do Objeto no eixo X
+var ObjPy = 58 // Posição inicial do Objeto no eixo Y
+var health = 3 // Contador de vida inicial
+var CharS = 3.25 // Velocidade do Jogador
+var pont = 0 // Pontuação inicial	
+var pointed = 0 // Contador para aumento de pontos de saúde 
+var fishs = [] // Vetor que recebe os peixes
+var peixes = 4 // Quantidade de peixes
 function setup(){
 	canvas = createCanvas(600,600);
-	r = random(0,580) , t = 58 ,b = random(480,80);
-	color = ['black', 'orange','yellow', 'pink']
-		for(i = 0; i <= 3; i++){
-			fill(color[i])
-			rect(a,b,25,25)
-		}
-	sound.setVolume(0.1);
-	sound.play();
+	canvas.position(300,0);
+	ObjPx = random(0,580);  
+	ObjPy = 58; 
+	for(i=0;i<peixes;i++){
+		fishs[i] = new Fish(-30, random(480,80));
+	}
+	frameRate(60);
 }
 function draw() {
     background('#A896FF');
 	fill('blue');
-	rect(x,y,50,50);
+	rect(CharPx,CharPy,50,50);
 	fill('white');
-	rect(r,t,10,10);
-	fill('brown');
+	rect(ObjPx,ObjPy,10,10);
+	fill('#C1B47C');
 	rect(0,560,600,40);
-	noStroke();
+	//noStroke();
 	if(health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
-			x += s
+			CharPx += CharS
 		}
 		if(keyIsDown(LEFT_ARROW)){ //Movimento para a esquerda de 5px
-			x -= s
+			CharPx -= CharS
 		}
 		if(keyIsDown(UP_ARROW)){ //Movimento para cima de 5px
-			y -= s
+			CharPy -= CharS
 		}
 		if(keyIsDown(DOWN_ARROW)){ //Movimento para baixo de 5px
-			y += s
+			CharPy += CharS
 		}
-		t++ // Queda do poluente
-		a++ // Movimento do peixe
-		if(a > 600){
-			a = 0
-			b = random(480,80)
-		}
+		peixe();
+		ObjPy++ // Queda do poluente
+		//fishs.x++ // Movimento do peixe
 	}
-	if(x <= -5){
-		x += s
+	if(CharPx <= -5){
+		CharPx += CharS
 	}
-	if(x >= 555){
-		x -= s
+	if(CharPx >= 555){
+		CharPx -= CharS
 	}
-	if(y >= 515){
-		y -= s 
+	if(CharPy >= 515){
+		CharPy -= CharS 
 	}
-	if(y <= 60){
-		y += s
+	if(CharPy <= 60){
+		CharPy += CharS
 	}
-	if(t == 570){
-		r = random(0,580)
-		t = -10
+	if(ObjPy == 570){
+		ObjPx = random(0,580)
+		ObjPy = -10
 		health--
 	}
-	if(keyIsDown(80)){
-		pause*= -1
+	
+	for(i=0;i<peixes;i++){
+		CcF = collideRectRect(fishs[i].x,fishs[i].y,25,25,CharPx,CharPy,50,50)//Verificação de colisão entre o personagem e o peixe
+			if (CcF == true){
+				health--
+				console.log("hit")
+				ObjPx = random(0,580)
+				ObjPy = -10
+				CharPx = random(CharPx-50,CharPx+50)
+				CharPy += 55
+			}
+		FcP = collideRectRect(fishs[i].x,fishs[i].y,25,25,ObjPx,ObjPy,10,10)//Verificando a colisão entre o peixe e os poluentes
+			if(FcP == true){	
+				health--
+				ObjPx = random(0,580)
+				ObjPy = -10
+				//alert("Você sabia que daqui a 50 anos hávera mais poluentes do que peixes no mar?") *introdução de fato*
+			}
 	}
-	PcF = collideRectRect(a,b,25,25,x,y,50,50)//Verificação de colisão entre o personagem e o peixe
-	if (PcF == true){
-		health--
-		console.log("hit")
-		r = random(0,580)
-		t = 0
-		x = random(x-50,x+50)
-		y += 55
-	}
-	PcP = collideRectRect(x,y,50,50,r,t,10,10)//Verificando a colisão entre o personagem e os poluentes
-	if(PcP == true){
+	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10)//Verificando a colisão entre o personagem e os poluentes
+	if(CcP == true){
 		pont += 10
 		pointed++
 		console.log("Pointed")
-		r = random(0,580)
-		t = -10
-	}
-	FcP = collideRectRect(a,b,25,25,r,t,10,10)//Verificando a colisão entre o peixe e os poluentes
-	if(FcP == true){	
-		health--
-		r = random(0,580)
-		t = -10
+		ObjPx = random(0,580)
+		ObjPy = -10
+
 	}
 	if(pointed == 15 ){ //Dando pontos de saúde marinha a cada 100 pontos
 		health ++
 		pointed = 0
 	}
-	/*if(pont%500 == 0){
-		life++
-	}*/
 	fill('black');
 	textSize(16);
 	textAlign(RIGHT);
@@ -110,24 +108,14 @@ function draw() {
 		if(keyIsDown(32)){
 			health = 3
 			pont = 0 
-			r = random(140,1130)
-			t = random(40,440)//Play Again
+			ObjPx = random(0,580)
+			ObjPy = -10//Play Again
 			}
-	}
-	if(keyIsDown(67)){
-		if(keyIsDown(82)){
-			if(keyIsDown(65)){
-				if(keyIsDown(78)){
-					textSize(40);
-					textAlign(CENTER);
-					text('THIS IS CRÃN', 625, 200);
-				}
-			}
-		}
-	}// First Easter Egg
-
-	if(keyIsDown(RIGHT_ARROW)){
-		thebest.setVolume(0.1);
-		thebest.play();
 	}
 }
+function peixe(){
+	for(i=0;i<peixes;i++){
+		fishs[i].move();
+		fishs[i].show();
+	}
+}	

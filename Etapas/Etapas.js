@@ -56,4 +56,8 @@ function draw(){
 		disparo = false
 		}
 	}
+	//Etapa 5
+	
+
+
 }
