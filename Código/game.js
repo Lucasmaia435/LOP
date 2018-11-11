@@ -89,7 +89,7 @@ function draw() {
 		ObjPy = -10
 		//alert("Você sabia que daqui a 50 anos hávera mais poluentes do que peixes no mar?") *introdução de fato*
 	}
-	if(pointed == 15 ){ //Dando pontos de saúde marinha a cada 100 pontos
+	if(pointed == 15 ){ //Dando pontos de saúde marinha a cada 150 pontos
 		health ++
 		pointed = 0
 	}
