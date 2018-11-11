@@ -14,7 +14,7 @@ function setup(){
 	ObjPx = random(0,580);  
 	ObjPy = 58; 
 	for(i=0;i<peixes;i++){
-		fishs[i] = new Fish(-30, random(480,80));
+		fishs[i] = new Fish(-30, random(120,80));
 	}
 	frameRate(60);
 }

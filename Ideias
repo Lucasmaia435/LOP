@@ -36,8 +36,3 @@
 		5º Deixar 3 poluentes chegarem ao fundo
 
 
-Programa :
-
-Incluir mais de 1 peixe :
-	Usar um "for" para a produção de mais de um peixe
-		Usar outros n "for's" para carregar o frame do peixe randomicamente escolhido
