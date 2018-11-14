@@ -4,7 +4,7 @@ var ObjPx = 0 // Posição inicial do Objeto no eixo X
 var ObjPy = 58 // Posição inicial do Objeto no eixo Y
 var Health = 3 // Contador de vida inicial
 var CharS = 3.25 // Velocidade do Jogador
-var Pont = 0 // Pontuação inicial	
+var Pont = 0 // Pontuação inicial
 var Pointed = 0 // Contador para aumento de pontos de saúde
 var Fishs = [] // Vetor que recebe os Peixes
 var Peixes = 4 // Quantidade de Peixes
@@ -14,7 +14,7 @@ function setup(){
 	ObjPx = random(0,580);
 	ObjPy = 58;
 	for(i=0;i<Peixes;i++){
-		Fishs[i] = new Fish(-30, random(120,80));
+		Fishs[i] = new Fish(-30, random(480,80));
 	}
 	frameRate(60);
 }
@@ -26,7 +26,12 @@ function draw() {
 	rect(ObjPx,ObjPy,10,10);
 	fill('#C1B47C');
 	rect(0,560,600,40);
-	//noStroke();
+	function peixe(){
+		for(i=0;i<Peixes;i++){
+			Fishs[i].move();
+			Fishs[i].show();
+		}
+	}
 	if(Health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
 			CharPx += CharS
@@ -115,11 +120,5 @@ function draw() {
 			CharPx = 300
 			CharPy = 300
 			}
-	}
-}
-function peixe(){
-	for(i=0;i<Peixes;i++){
-		Fishs[i].move();
-		Fishs[i].show();
 	}
 }
