@@ -1,20 +1,20 @@
 var CharPx = 300 // Posição inicial do Jogador
-var CharPy = 300 // Posição inicial do Jogador 
+var CharPy = 300 // Posição inicial do Jogador
 var ObjPx = 0 // Posição inicial do Objeto no eixo X
 var ObjPy = 58 // Posição inicial do Objeto no eixo Y
-var health = 3 // Contador de vida inicial
+var Health = 3 // Contador de vida inicial
 var CharS = 3.25 // Velocidade do Jogador
-var pont = 0 // Pontuação inicial	
-var pointed = 0 // Contador para aumento de pontos de saúde 
-var fishs = [] // Vetor que recebe os peixes
-var peixes = 4 // Quantidade de peixes
+var Pont = 0 // Pontuação inicial	
+var Pointed = 0 // Contador para aumento de pontos de saúde
+var Fishs = [] // Vetor que recebe os Peixes
+var Peixes = 4 // Quantidade de Peixes
 function setup(){
 	canvas = createCanvas(600,600);
 	canvas.position(300,0);
-	ObjPx = random(0,580);  
-	ObjPy = 58; 
-	for(i=0;i<peixes;i++){
-		fishs[i] = new Fish(-30, random(120,80));
+	ObjPx = random(0,580);
+	ObjPy = 58;
+	for(i=0;i<Peixes;i++){
+		Fishs[i] = new Fish(-30, random(120,80));
 	}
 	frameRate(60);
 }
@@ -27,7 +27,7 @@ function draw() {
 	fill('#C1B47C');
 	rect(0,560,600,40);
 	//noStroke();
-	if(health > 0){
+	if(Health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
 			CharPx += CharS
 		}
@@ -42,7 +42,7 @@ function draw() {
 		}
 		peixe();
 		ObjPy++ // Queda do poluente
-		//fishs.x++ // Movimento do peixe
+		//Fishs.x++ // Movimento do peixe
 	}
 	if(CharPx <= -5){
 		CharPx += CharS
@@ -51,7 +51,7 @@ function draw() {
 		CharPx -= CharS
 	}
 	if(CharPy >= 515){
-		CharPy -= CharS 
+		CharPy -= CharS
 	}
 	if(CharPy <= 60){
 		CharPy += CharS
@@ -59,57 +59,57 @@ function draw() {
 	if(ObjPy == 570){
 		ObjPx = random(0,580)
 		ObjPy = -10
-		health--
+		Health--
 	}
-	
-	for(i=0;i<peixes;i++){
-		CcF = collideRectRect(fishs[i].x,fishs[i].y,25,25,CharPx,CharPy,50,50)//Verificação de colisão entre o personagem e o peixe
+
+	for(i=0;i<Peixes;i++){
+		CcF = collideRectRect(Fishs[i].x,Fishs[i].y,25,25,CharPx,CharPy,50,50)//Verificação de colisão entre o personagem e o peixe
 			if (CcF == true){
-				health--
+				Health--
 				console.log("hit")
 				ObjPx = random(0,580)
 				ObjPy = -10
 				CharPx = random(CharPx-50,CharPx+50)
 				CharPy += 55
 			}
-		FcP = collideRectRect(fishs[i].x,fishs[i].y,25,25,ObjPx,ObjPy,10,10)//Verificando a colisão entre o peixe e os poluentes
-			if(FcP == true){	
-				health--
+		FcP = collideRectRect(Fishs[i].x,Fishs[i].y,25,25,ObjPx,ObjPy,10,10)//Verificando a colisão entre o peixe e os poluentes
+			if(FcP == true){
+				Health--
 				ObjPx = random(0,580)
 				ObjPy = -10
-				//alert("Você sabia que daqui a 50 anos hávera mais poluentes do que peixes no mar?") *introdução de fato*
+				//alert("Você sabia que daqui a 50 anos hávera mais poluentes do que Peixes no mar?") *introdução de fato*
 			}
 	}
 	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10)//Verificando a colisão entre o personagem e os poluentes
 	if(CcP == true){
-		pont += 10
-		pointed++
+		Pont += 10
+		Pointed++
 		console.log("Pointed")
 		ObjPx = random(0,580)
 		ObjPy = -10
 
 	}
-	if(pointed == 15 ){ //Dando pontos de saúde marinha a cada 150 pontos
-		health ++
-		pointed = 0
+	if(Pointed == 15 ){ //Dando pontos de saúde marinha a cada 150 pontos
+		Health ++
+		Pointed = 0
 	}
 	fill('black');
 	textSize(16);
 	textAlign(RIGHT);
-	text("Points: " + pont, 500, 20);
+	text("Points: " + Pont, 500, 20);
 	fill('black')
 	textSize(16);
 	textAlign(RIGHT);
-	text("Ocean health: " + health, 140, 20); // Contador de vida
-	if(health <= 0){ //Game over
+	text("Ocean Health: " + Health, 140, 20); // Contador de vida
+	if(Health <= 0){ //Game over
 		textSize(30);
 		textAlign(CENTER);
 		text(' PRESS SPACEBAR \n TO \nPLAY AGAIN', 300, 300);
 		CharPy = -300
-		CharPx = -300 
+		CharPx = -300
 		if(keyIsDown(32)){
-			health = 3
-			pont = 0 
+			Health = 3
+			Pont = 0
 			ObjPx = random(0,580)
 			ObjPy = -10//Play Again
 			CharPx = 300
@@ -118,8 +118,8 @@ function draw() {
 	}
 }
 function peixe(){
-	for(i=0;i<peixes;i++){
-		fishs[i].move();
-		fishs[i].show();
+	for(i=0;i<Peixes;i++){
+		Fishs[i].move();
+		Fishs[i].show();
 	}
-}	
+}
