@@ -7,12 +7,12 @@
 		4º 9 peixes na tela e 20 poluentes a cada 9 segundos
 		5º 11 peixes e 3 carangueijos e 25 poluentes a cada 11 segundos
 
-3 - Personagem : 
+3 - Personagem :
 	Mergulhador
 		Cabeça: bolha de vidro
 		Dorso: roupa de marinheiro ou uma roupa que remeta o fundo do mar
 		Pernas: calça azul escura ou uma bermuda
-		Pés: botas de ferro ou sandálias 
+		Pés: botas de ferro ou sandálias
 
 4 - Ambiente:
 		Ondas constantes
@@ -28,11 +28,39 @@
 		- Ao ser pego por peixes falar algo sobre como peixes podem confundir alimentos
 
 
-7 - Game Over : 
+7 - Game Over :
 		1º Ser atingido por um peixe 3 vezes
 		2º Ser pego por um carangueijo 2 vezes
-		3º Deixar 5 peixes comerem poluentes 
+		3º Deixar 5 peixes comerem poluentes
 		4º Acertar 3 peixes com a arma(Buff)
 		5º Deixar 3 poluentes chegarem ao fundo
 
-
+// Código de telas:
+function draw(){
+background('#A896FF')
+	if(screen == 'Menu'){
+	fill('Green')
+	textSize(50)
+	textAlign(CENTER);
+	text("Welcome \n to \n Submarine Eco-Mission",290,250)
+	}
+	if(screen == 'In game'){
+		fill('gray');
+		rect(600,0,200,600);
+		fill('blue');
+		rect(CharPx,CharPy,45,45)
+	}
+	if(screen == 'Game Over'){
+		fill('Black')
+		textSize(50);
+		textAlign(CENTER);
+		text("Game Over", 300,250);
+		fill('Black');
+		textSize(30);
+		textAlign(CENTER);
+		text('Press SpaceBar \n to \n Open the Menu',300,350);
+			if(keyIsDown(32)){
+				screen = 'Menu';
+			}
+	}
+}

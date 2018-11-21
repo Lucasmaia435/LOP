@@ -7,7 +7,7 @@ var CharS = 3.25 // Velocidade do Jogador
 var Pont = 0 // Pontuação inicial
 var Pointed = 0 // Contador para aumento de pontos de saúde
 var Fishs = [] // Vetor que recebe os Peixes
-var Peixes = 4 // Quantidade de Peixes
+var Peixes = 10 // Quantidade de Peixes
 function setup(){
 	canvas = createCanvas(600,600);
 	canvas.position(300,0);
