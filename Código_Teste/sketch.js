@@ -45,9 +45,8 @@ function draw() {
 		if(keyIsDown(DOWN_ARROW)){ //Movimento para baixo de 5px
 			CharPy += CharS
 		}
-		peixe();
+		peixe(); // Aparição e movimentação dos Peixes
 		ObjPy++ // Queda do poluente
-		//Fishs.x++ // Movimento do peixe
 	}
 	if(CharPx <= -5){
 		CharPx += CharS
