@@ -87,7 +87,7 @@ function draw() {
 	}
 	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10)//Verificando a colisão entre o personagem e os poluentes
 	if(CcP == true){
-		Pont += 50
+		Pont += 10
 		Pointed++
 		console.log("Pointed")
 		ObjPx = random(0,580)
