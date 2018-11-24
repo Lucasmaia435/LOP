@@ -10,6 +10,6 @@ Projeto em andamento na pasta : "Código"
 
 5º e 6º etapas - OK (No projeto)
 
-7º e 8º etapas - Em andamento
+7º e 8º etapas - Ok (No projeto)
 
 9º e 10º etapas - Em andamento

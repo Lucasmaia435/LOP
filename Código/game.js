@@ -2,24 +2,25 @@ var CharPx = 300 // Posição inicial do Jogador
 var CharPy = 300 // Posição inicial do Jogador
 var ObjPx = 0 // Posição inicial do Objeto no eixo X
 var ObjPy = 58 // Posição inicial do Objeto no eixo Y
-var Health = 3 // Contador de vida inicial
+var Health = 5 // Contador de vida inicial
 var CharS = 3.25 // Velocidade do Jogador
 var Pont = 0 // Pontuação inicial
 var Pointed = 0 // Contador para aumento de pontos de saúde
 var Fishs = [] // Vetor que recebe os Peixes
-var Peixes = 4 // Quantidade de Peixes
+let Peixes = 4 // Quantidade de Peixes
+var MaxP = 12 // Quantidade máxima de Peixes
 function setup(){
 	canvas = createCanvas(600,600);
 	canvas.position(300,0);
 	ObjPx = random(0,580);
 	ObjPy = 58;
-	for(i=0;i<Peixes;i++){
+	for(i=0;i<MaxP;i++){
 		Fishs[i] = new Fish(-30, random(480,80));
 	}
 	frameRate(60);
 }
 function draw() {
-    background('#A896FF');
+  background('#A896FF');
 	fill('blue');
 	rect(CharPx,CharPy,50,50);
 	fill('white');
@@ -86,7 +87,7 @@ function draw() {
 	}
 	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10)//Verificando a colisão entre o personagem e os poluentes
 	if(CcP == true){
-		Pont += 10
+		Pont += 50
 		Pointed++
 		console.log("Pointed")
 		ObjPx = random(0,580)
@@ -96,6 +97,15 @@ function draw() {
 	if(Pointed == 15 ){ //Dando pontos de saúde marinha a cada 150 pontos
 		Health ++
 		Pointed = 0
+	}
+	if(Pont == 200){
+		Peixes = 6
+	}else if(Pont == 600){
+		Peixes = 8
+	}else if(Pont == 900){
+		Peixes = 10
+	}else if(Pont == 1200){
+		Peixes = 12
 	}
 	fill('black');
 	textSize(16);
