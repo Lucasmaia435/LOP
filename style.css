@@ -1,0 +1,20 @@
+body{
+    background: linear-gradient(rgba(179,229,255), rgba(0,102,153));
+    background-repeat: no-repeat;
+    background-size: 1440px 720px;
+}
+
+li{
+  text-decoration: underline;
+  font-size: 1.5em;
+
+}
+a{
+  color: white;
+}
+a:hover,
+a:active,
+a:focus {
+  color: gray;
+  text-decoration: none;
+}
