@@ -12,7 +12,7 @@ var FrameP = [] // Animação dos Peixes
 
 function preload(){
 	for(i = 1 ; i < 4 ; i++){
-		FrameP[i] = loadImage('Frames/FrameP'+i+'.png')
+		FrameP[i] = loadImage('Frames/P1/FrameP'+i+'.png')
 	}
 }
 function setup(){
