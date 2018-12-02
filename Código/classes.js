@@ -5,14 +5,18 @@ class Fish{
 		this.speed = random(1,2);
 	}
 	move() {
-		this.x += this.speed		
+		this.x += this.speed
 		if(this.x > 600){
 			this.x = 0
 			this.y = random(480,80)
 		}
 	}
 	show(){
-		fill("orange")
-		rect(this.x,this.y,30,30)
+		for(i = 1;i < 4; i ++){
+		image(FrameP[i],this.x,this.y);
+		if(i > 3){
+			i = 3
+		}
 	}
+}
 }

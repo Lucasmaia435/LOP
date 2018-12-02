@@ -9,6 +9,26 @@ var Pointed = 0 // Contador para aumento de pontos de saúde
 var Fishs = [] // Vetor que recebe os Peixes
 let Peixes = 4 // Quantidade de Peixes
 var MaxP = 12 // Quantidade máxima de Peixes
+var Tela = 0 //
+var FrameP = [] //
+var SpritePerD = [] //
+var SpritePerE = [] //
+andD = false;
+andD = false;
+var animaçãoP = 0//
+var contFrame = 0 //
+function preload(){
+	for(i = 1 ; i < 4 ; i++){
+		FrameP[i] = loadImage('Frames/P1/FrameP'+i+'.png');
+	}
+	for(i = 0 ; i < 4; i++){
+		SpritePerD[i] = loadImage('Frames/SpritepPersonagem/direita/bill'+i+'.png')
+	}
+	for(i = 0 ; i < 4; i++){
+		SpritePerE[i] = loadImage('Frames/SpritepPersonagem/esquerda/sprite_bill'+i+'.png')
+	}
+	mapa = loadImage('Frames/SpriteMapa/mapa.jpg');
+}
 function setup(){
 	canvas = createCanvas(600,600);
 	canvas.position(300,0);
@@ -20,34 +40,54 @@ function setup(){
 	frameRate(60);
 }
 function draw() {
-  background('#A896FF');
-	fill('blue');
-	rect(CharPx,CharPy,50,50);
-	fill('white');
-	rect(ObjPx,ObjPy,10,10);
-	fill('#C1B47C');
-	rect(0,560,600,40);
-	function peixe(){
-		for(i=0;i<Peixes;i++){
-			Fishs[i].move();
-			Fishs[i].show();
-		}
+  background(mapa);
+	if(Tela == 0 ){
+		textSize(30);
+		textAlign(CENTER);
+		text(' Welcome \n TO \n Submarine EcoMission \n \n Press SPACEBAR to Play', 300, 300);
+		if(keyIsDown(32)){
+			Tela = 1
 	}
+}
+	if(Tela == 1){
+		fill('white');
+		rect(ObjPx,ObjPy,10,10);
+		fill('#C1B47C');
+		rect(0,560,600,40);
+		function peixe(){
+			for(i=0;i<Peixes;i++){
+				Fishs[i].move();
+				Fishs[i].show();
+			}
+		}
 	if(Health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
 			CharPx += CharS
+			andD = true
 		}
 		if(keyIsDown(LEFT_ARROW)){ //Movimento para a esquerda de 5px
 			CharPx -= CharS
+			andE = true
 		}
 		if(keyIsDown(UP_ARROW)){ //Movimento para cima de 5px
 			CharPy -= CharS
+			andD = true
 		}
 		if(keyIsDown(DOWN_ARROW)){ //Movimento para baixo de 5px
 			CharPy += CharS
+			andE= true
 		}
 		peixe(); // Aparição e movimentação dos Peixes
 		ObjPy++ // Queda do poluente
+	}
+	if(andD == true ){
+		anima = SpritePerD[contFrame];
+		image(anima,CharPx,CharPy0)
+		contFrame++
+		if(contFrame > 3){
+			contFrame = 0;
+		}
+
 	}
 	if(CharPx <= -5){
 		CharPx += CharS
@@ -115,6 +155,8 @@ function draw() {
 	textSize(16);
 	textAlign(RIGHT);
 	text("Ocean Health: " + Health, 140, 20); // Contador de vida
+}
+if(Tela == 2){
 	if(Health <= 0){ //Game over
 		textSize(30);
 		textAlign(CENTER);
@@ -128,6 +170,8 @@ function draw() {
 			ObjPy = -10//Play Again
 			CharPx = 300
 			CharPy = 300
+			Tela = 1
 			}
 	}
+}
 }
