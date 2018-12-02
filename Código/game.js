@@ -82,7 +82,7 @@ function draw() {
 	}
 	if(andD == true ){
 		anima = SpritePerD[contFrame];
-		image(anima,CharPx,CharPy0)
+		image(anima,CharPx,CharPy)
 		contFrame++
 		if(contFrame > 3){
 			contFrame = 0;
