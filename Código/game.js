@@ -13,9 +13,10 @@ var Tela = 0 // Váriavel que guarda as telas
 var FrameP = [] // Frames dos Peixes
 var SpritePerD = [] // Frames do personagem
 var FrameLixo = [] //Frames do lixo
-andD = false; // Movimentação do personagem
+var andD = false; // Movimentação do personagem
 var animaçãoP = 0//
 var contFrame = 0 //
+var nv = 1 // Contador de níveis
 function preload(){
 	for(i = 1 ; i < 4 ; i++){
 		FrameP[i] = loadImage('Frames/P1/FrameP'+i+'.png');
@@ -118,7 +119,6 @@ function draw() {
 				Health--
 				ObjPx = random(0,580)
 				ObjPy = -10
-				//alert("Você sabia que daqui a 50 anos hávera mais poluentes do que Peixes no mar?") *introdução de fato*
 			}
 	}
 	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10)//Verificando a colisão entre o personagem e os poluentes
@@ -134,14 +134,18 @@ function draw() {
 		Health ++
 		Pointed = 0
 	}
-	if(Pont == 200){
+	if(Pont == 200){ // Nível 2
 		Peixes = 6
-	}else if(Pont == 600){
+		nv = 2
+	}else if(Pont == 600){ // Nível 3
 		Peixes = 8
-	}else if(Pont == 900){
+		nv = 3
+	}else if(Pont == 900){ // Nível 4
 		Peixes = 10
-	}else if(Pont == 1200){
+		nv = 4
+	}else if(Pont == 1200){ // Nível 5
 		Peixes = 12
+		nv = 5
 	}
 	fill('black');
 	textSize(16);
@@ -150,7 +154,11 @@ function draw() {
 	fill('black')
 	textSize(16);
 	textAlign(RIGHT);
-	text("Ocean Health: " + Health, 140, 20); // Contador de vida
+	text("Ocean Health: " + Health, 140, 20 ); // Contador de vida
+	fill('black')
+	textSize(16);
+	textAlign(RIGHT);
+	text(" Nível: "+ nv, 300,20)
 }
 if(Health <= 0){
 	Tela = 2
