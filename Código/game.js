@@ -3,18 +3,17 @@ var CharPy = 300 // Posição inicial do Jogador
 var ObjPx = 0 // Posição inicial do Objeto no eixo X
 var ObjPy = 58 // Posição inicial do Objeto no eixo Y
 var Health = 5 // Contador de vida inicial
-var CharS = 3.25 // Velocidade do Jogador
+var CharS = 6 // Velocidade do Jogador
 var Pont = 0 // Pontuação inicial
 var Pointed = 0 // Contador para aumento de pontos de saúde
 var Fishs = [] // Vetor que recebe os Peixes
 let Peixes = 4 // Quantidade de Peixes
 var MaxP = 12 // Quantidade máxima de Peixes
-var Tela = 0 //
-var FrameP = [] //
-var SpritePerD = [] //
-var SpritePerE = [] //
-andD = false;
-andD = false;
+var Tela = 0 // Váriavel que guarda as telas
+var FrameP = [] // Frames dos Peixes
+var SpritePerD = [] // Frames do personagem
+var FrameLixo = [] //Frames do lixo
+andD = false; // Movimentação do personagem
 var animaçãoP = 0//
 var contFrame = 0 //
 function preload(){
@@ -24,8 +23,8 @@ function preload(){
 	for(i = 0 ; i < 4; i++){
 		SpritePerD[i] = loadImage('Frames/SpritePersonagem/direita/bill'+i+'.png')
 	}
-	for(i = 0 ; i < 4; i++){
-		SpritePerE[i] = loadImage('Frames/SpritePersonagem/esquerda/sprite_billL'+i+'.png')
+	for(i = 0; i < 3; i++){
+		FrameLixo[i] = loadImage('Frames/lixo/lixo'+i+'.png')
 	}
 	mapa = loadImage('Frames/SpriteMapa/mapa.jpg');
 }
@@ -37,7 +36,7 @@ function setup(){
 	for(i=0;i<MaxP;i++){
 		Fishs[i] = new Fish(-30, random(480,80));
 	}
-	frameRate(60);
+	frameRate(30);
 }
 function draw() {
   background(mapa);
@@ -50,10 +49,7 @@ function draw() {
 	}
 }
 	if(Tela == 1){
-		fill('white');
-		rect(ObjPx,ObjPy,10,10);
-		fill('#C1B47C');
-		rect(0,560,600,40);
+		image(FrameLixo[1],ObjPx,ObjPy);
 		function peixe(){
 			for(i=0;i<Peixes;i++){
 				Fishs[i].move();
@@ -79,13 +75,13 @@ function draw() {
 		}
 		peixe(); // Aparição e movimentação dos Peixes
 		ObjPy++ // Queda do poluente
-	}
-	if(andD == true ){
-		anima = SpritePerD[contFrame];
-		image(anima,CharPx,CharPy)
-		contFrame++
-		if(contFrame > 3){
-			contFrame = 0;
+		if(andD == true ){
+			anima = SpritePerD[contFrame];
+			image(anima,CharPx,CharPy,40,40)
+			contFrame++
+			if(contFrame > 3){
+				contFrame = 0;
+			}
 		}
 
 	}
@@ -156,8 +152,9 @@ function draw() {
 	textAlign(RIGHT);
 	text("Ocean Health: " + Health, 140, 20); // Contador de vida
 }
-if(Tela == 2){
-	if(Health <= 0){ //Game over
+if(Health <= 0){
+	Tela = 2
+	if(Tela == 2){ //Game over
 		textSize(30);
 		textAlign(CENTER);
 		text(' PRESS SPACEBAR \n TO \nPLAY AGAIN', 300, 300);

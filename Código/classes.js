@@ -2,7 +2,7 @@ class Fish{
 	constructor(fishx,fishy){
 		this.x = fishx;
 		this.y = fishy;
-		this.speed = random(1,2);
+		this.speed = random(2,10);
 	}
 	move() {
 		this.x += this.speed
@@ -12,11 +12,6 @@ class Fish{
 		}
 	}
 	show(){
-		for(i = 1;i < 4; i ++){
-		image(FrameP[i],this.x,this.y);
-		if(i > 3){
-			i = 3
-		}
+		image(FrameP[3],this.x,this.y)
 	}
-}
 }
