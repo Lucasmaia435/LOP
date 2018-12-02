@@ -25,7 +25,7 @@ function preload(){
 		SpritePerD[i] = loadImage('Frames/SpritePersonagem/direita/bill'+i+'.png')
 	}
 	for(i = 0 ; i < 4; i++){
-		SpritePerE[i] = loadImage('Frames/SpritePersonagem/esquerda/sprite_bill'+i+'.png')
+		SpritePerE[i] = loadImage('Frames/SpritePersonagem/esquerda/sprite_billL'+i+'.png')
 	}
 	mapa = loadImage('Frames/SpriteMapa/mapa.jpg');
 }
