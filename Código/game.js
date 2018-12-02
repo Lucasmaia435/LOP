@@ -22,10 +22,10 @@ function preload(){
 		FrameP[i] = loadImage('Frames/P1/FrameP'+i+'.png');
 	}
 	for(i = 0 ; i < 4; i++){
-		SpritePerD[i] = loadImage('Frames/SpritepPersonagem/direita/bill'+i+'.png')
+		SpritePerD[i] = loadImage('Frames/SpritePersonagem/direita/bill'+i+'.png')
 	}
 	for(i = 0 ; i < 4; i++){
-		SpritePerE[i] = loadImage('Frames/SpritepPersonagem/esquerda/sprite_bill'+i+'.png')
+		SpritePerE[i] = loadImage('Frames/SpritePersonagem/esquerda/sprite_bill'+i+'.png')
 	}
 	mapa = loadImage('Frames/SpriteMapa/mapa.jpg');
 }
