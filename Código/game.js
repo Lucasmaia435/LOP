@@ -176,6 +176,7 @@ if(Health <= 0){
 			CharPx = 300
 			CharPy = 300
 			Tela = 1
+			nv = 1
 			}
 	}
 }
