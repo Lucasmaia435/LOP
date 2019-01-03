@@ -112,7 +112,7 @@ function draw() {
 				ObjPx = random(0,580)
 				ObjPy = -10
 				CharPx = random(CharPx-50,CharPx+50)
-				CharPy += 55
+				CharPy += random(CharPy-50,CharPy+50)
 			}
 		FcP = collideRectRect(Fishs[i].x,Fishs[i].y,25,25,ObjPx,ObjPy,10,10)//Verificando a colisão entre o peixe e os poluentes
 			if(FcP == true){
