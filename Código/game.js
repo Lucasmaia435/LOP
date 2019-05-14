@@ -14,8 +14,8 @@ var FrameP = [] // Frames dos Peixes
 var SpritePerD = [] // Frames do personagem
 var FrameLixo = [] //Frames do lixo
 var andD = false; // Movimentação do personagem
-var animaçãoP = 0//
-var contFrame = 0 //
+var animaçãoP = 0 //
+var contFrame = 0 // 
 var nv = 1 // Contador de níveis
 function preload(){
 	for(i = 1 ; i < 4 ; i++){
@@ -46,7 +46,7 @@ function draw() {
 		textAlign(CENTER);
 		text(' Welcome \n TO \n Submarine EcoMission \n \n Press SPACEBAR to Play', 300, 300);
 		if(keyIsDown(32)){
-			Tela = 1
+			Tela = 1;
 	}
 }
 	if(Tela == 1){
@@ -59,27 +59,27 @@ function draw() {
 		}
 	if(Health > 0){
 		if(keyIsDown(RIGHT_ARROW)){ //Movimento para a direita de 5px
-			CharPx += CharS
-			andD = true
+			CharPx += CharS;
+			andD = true;
 		}
 		if(keyIsDown(LEFT_ARROW)){ //Movimento para a esquerda de 5px
-			CharPx -= CharS
-			andE = true
+			CharPx -= CharS;
+			andE = true;
 		}
 		if(keyIsDown(UP_ARROW)){ //Movimento para cima de 5px
-			CharPy -= CharS
-			andD = true
+			CharPy -= CharS;
+			andD = true;
 		}
 		if(keyIsDown(DOWN_ARROW)){ //Movimento para baixo de 5px
-			CharPy += CharS
-			andE= true
+			CharPy += CharS;
+			andE= true;
 		}
 		peixe(); // Aparição e movimentação dos Peixes
-		ObjPy++ // Queda do poluente
+		ObjPy++; // Queda do poluente
 		if(andD == true ){
 			anima = SpritePerD[contFrame];
-			image(anima,CharPx,CharPy,40,40)
-			contFrame++
+			image(anima,CharPx,CharPy,40,40);
+			contFrame++;
 			if(contFrame > 3){
 				contFrame = 0;
 			}
@@ -87,96 +87,96 @@ function draw() {
 
 	}
 	if(CharPx <= -5){
-		CharPx += CharS
+		CharPx += CharS;
 	}
 	if(CharPx >= 555){
-		CharPx -= CharS
+		CharPx -= CharS;
 	}
 	if(CharPy >= 515){
-		CharPy -= CharS
+		CharPy -= CharS;
 	}
 	if(CharPy <= 60){
-		CharPy += CharS
+		CharPy += CharS;
 	}
 	if(ObjPy == 570){
-		ObjPx = random(0,580)
-		ObjPy = -10
-		Health--
+		ObjPx = random(0,580);
+		ObjPy = -10;
+		Health--;
 	}
 
 	for(i=0;i<Peixes;i++){
 		CcF = collideRectRect(Fishs[i].x,Fishs[i].y,25,25,CharPx,CharPy,50,50)//Verificação de colisão entre o personagem e o peixe
 			if (CcF == true){
-				Health--
-				console.log("hit")
-				ObjPx = random(0,580)
-				ObjPy = -10
-				CharPx = random(CharPx-50,CharPx+50)
-				CharPy += random(CharPy-50,CharPy+50)
+				Health--;
+				console.log("hit");
+				ObjPx = random(0,580);
+				ObjPy = -10;
+				CharPx = random(CharPx-50,CharPx+50);
+				CharPy += random(CharPy-50,CharPy+50);
 			}
-		FcP = collideRectRect(Fishs[i].x,Fishs[i].y,25,25,ObjPx,ObjPy,10,10)//Verificando a colisão entre o peixe e os poluentes
+		FcP = collideRectRect(Fishs[i].x,Fishs[i].y,25,25,ObjPx,ObjPy,10,10) //Verificando a colisão entre o peixe e os poluentes
 			if(FcP == true){
-				Health--
-				ObjPx = random(0,580)
-				ObjPy = -10
+				Health--;
+				ObjPx = random(0,580);
+				ObjPy = -10;
 			}
-	}
-	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10)//Verificando a colisão entre o personagem e os poluentes
+		}
+	CcP = collideRectRect(CharPx,CharPy,50,50,ObjPx,ObjPy,10,10) //Verificando a colisão entre o personagem e os poluentes
 	if(CcP == true){
-		Pont += 10
-		Pointed++
-		console.log("Pointed")
-		ObjPx = random(0,580)
-		ObjPy = -10
-
+		Pont += 10;
+		Pointed++;
+		console.log("Pointed");
+		ObjPx = random(0,580);
+		ObjPy = -10;
 	}
+	
 	if(Pointed == 15 ){ //Dando pontos de saúde marinha a cada 150 pontos
-		Health ++
-		Pointed = 0
+		Health ++;
+		Pointed = 0;
 	}
 	if(Pont == 200){ // Nível 2
-		Peixes = 6
-		nv = 2
+		Peixes = 6;
+		nv = 2;
 	}else if(Pont == 600){ // Nível 3
-		Peixes = 8
-		nv = 3
+		Peixes = 8;
+		nv = 3;
 	}else if(Pont == 900){ // Nível 4
-		Peixes = 10
-		nv = 4
+		Peixes = 10;
+		nv = 4;
 	}else if(Pont == 1200){ // Nível 5
-		Peixes = 12
-		nv = 5
+		Peixes = 12;
+		nv = 5;
 	}
 	fill('black');
 	textSize(16);
 	textAlign(RIGHT);
 	text("Points: " + Pont, 500, 20);
-	fill('black')
+	fill('black');
 	textSize(16);
 	textAlign(RIGHT);
 	text("Ocean Health: " + Health, 140, 20 ); // Contador de vida
-	fill('black')
+	fill('black');
 	textSize(16);
 	textAlign(RIGHT);
-	text(" Nível: "+ nv, 300,20)
+	text(" Nível: "+ nv, 300,20);
 }
 if(Health <= 0){
-	Tela = 2
+	Tela = 2;
 	if(Tela == 2){ //Game over
 		textSize(30);
 		textAlign(CENTER);
 		text(' PRESS SPACEBAR \n TO \nPLAY AGAIN', 300, 300);
-		CharPy = -300
-		CharPx = -300
+		CharPy = -300;
+		CharPx = -300;
 		if(keyIsDown(32)){
-			Health = 3
-			Pont = 0
-			ObjPx = random(0,580)
-			ObjPy = -10//Play Again
-			CharPx = 300
-			CharPy = 300
-			Tela = 1
-			nv = 1
+			Health = 3;
+			Pont = 0;
+			ObjPx = random(0,580);
+			ObjPy = -10; //Play Again
+			CharPx = 300;
+			CharPy = 300;
+			Tela = 1;
+			nv = 1;
 			}
 	}
 }
