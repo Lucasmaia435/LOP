@@ -1,4 +1,4 @@
-##PROJETO DE LOP
+## PROJETO DE LOP
 
 * 1º e 2º etapas - OK (No projeto)
 
@@ -10,4 +10,4 @@
 
 * 9º e 10º etapas - Ok (No projeto
 
-###Click to Play: https://lucasmaia435.github.io/LOP/Código
+### Click to Play: https://lucasmaia435.github.io/LOP/Código
